@@ -11,6 +11,9 @@ RSpec.describe Grade_Counter do
     it 'returns Green: 2 when given "Green, Green"' do 
       expect(grade_counter.count('Green,Green')).to eq("Green: 2") 
     end 
+    it 'returns Green: 2, Amber: 1 when give "Green, Green, Amber"' do 
+      expect(grade_counter.count('Green,Green,Amber')).to eq("Green: 2\n Amber: 1")
+    end 
   end 
 
 end 
