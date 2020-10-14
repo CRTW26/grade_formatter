@@ -10,7 +10,14 @@ RSpec.describe Grade_Counter do
     end 
   end 
 
-  describe '#grade_count' do 
+  describe '#count' do 
+    it 'returns Green: 1 when given Green' do 
+      grade_counter.count('Green')
+      expect(grade_counter.green_count).to eq(1)
+    end 
+  end 
+
+  describe '#output' do 
     it 'returns Green: 1 when given Green ' do 
       grade_counter.count('Green')
       expect(grade_counter.output).to eq("Green: 1\n")
@@ -30,6 +37,16 @@ RSpec.describe Grade_Counter do
     it 'returns Green: 1, Amber:1, Red: 1, Uncounted: 1 when give Green,Amber, Red, Gren' do 
       grade_counter.count('Green,Amber,Red,Gren')
       expect(grade_counter.output).to eq("Green: 1\nAmber: 1\nRed: 1\nUncounted: 1")
+    end 
+  end 
+
+  context 'when input contains capitalized and non-capitialized words' do 
+    it 'returns Green when given green' do 
+      expect(grade_counter.format_grades('green')).to eq(['Green'])
+    end 
+    it 'returns Green: 1 when given green' do 
+      grade_counter.count('green')
+      expect(grade_counter.output).to eq("Green: 1\n")
     end 
   end 
 

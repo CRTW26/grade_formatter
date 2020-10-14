@@ -14,14 +14,12 @@ class Grade_Counter
   end 
 
   def count(grades)
-    valid_grades = ["Green", "Amber", "Red"]
-    grades_array = grades.split(",")
-    grades_array.each do |grade|
+    formatted_grades = format_grades(grades)
+    formatted_grades.each do |grade|
       if grade == "Green" then @green_count += 1 end 
       if grade == "Amber" then @amber_count += 1 end
       if grade == 'Red' then @red_count += 1 end 
-      if !(valid_grades.include?(grade)) then @uncounted += 1 end 
-
+      if !(VALID_GRADES.include?(grade)) then @uncounted += 1 end 
     end 
   end
 
@@ -33,5 +31,12 @@ class Grade_Counter
       if @uncounted > 0 then results.concat("Uncounted: #{@uncounted}") end
       return results
   end
+
+  def format_grades(grades) 
+    grades_array = grades.split(",")
+    grades_array.each do |grade|
+      grade.capitalize!
+    end 
+  end 
   
 end 
